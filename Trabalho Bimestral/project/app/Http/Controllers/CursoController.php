@@ -1,147 +1,85 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Curso;
+use App\Models\Eixo;
 
 use Illuminate\Http\Request;
 
 class CursoController extends Controller {
     
-    // define um atributo com array inicial e dados
-    public $dados = [[
-        'id' => 1,
-        'nome'  => 'eduarda',
-        'email' => 'eduarda@gmail.com'
-    ]];
-
-    public function __construct() {
-
-        // obtém o conteúdo da variável de sessão "cursos"
-        $aux = session('cursos');
-
-        // verifica se a sessão já estava setada
-        if(!isset($aux)) {
-            // seta a sessão "cursos" com o array
-            session(['cursos' => $this->dados]);
-        }
-    }
-
     public function index() {
-        $dados = session('cursos');
-        $cursos = "Teste";
-        // Passa um array de dados com "cursos" e "clínicas"
-        return view('cursos.index', compact(['dados', 'cursos']));
+
+        $data = Curso::all();
+        
+        return view('cursos.index', compact('data'));
     }
 
     public function create() {
-
-        return view('cursos.create');
+        
+        $eixos = Eixo::all();
+        return view('cursos.create', compact('eixos'));
     }
 
     public function store(Request $request) {
 
-        // obtém os dados da sessão "cursos"
-       $aux = session('cursos');
-       
-       // retorna um array contendo apenas os dados da coluna "id"
-       $ids = array_column($aux, 'id');
-       
-       // verifica o total de elementos do array "id"
-       if(count($ids) > 0) {
-           // obtém o valor máximo do array "id" + 1
-           $new_id = max($ids) + 1;
-       }
-       else {
-           // configura novo id com 1
-           $new_id = 1;
-       }
-       
-       // Array com os dados do novo cadastro
-       $novo = [  
-           'id' => $new_id,
-           'nome' => $request->nome,
-           'email' => $request->email
-       ];
-       
-       // Insere novo cadastro no array
-       array_push($aux, $novo);
-       
-       // Atualiza a sessão com o novo cadastro
-       session(['cursos' => $aux]);
-       
-       // redireciona para lista de cursos
-       return redirect()->route('cursos.index');
-    }
-
-    public function show($id) {
+        /*$request->validate([
+            'nome' => 'required|max:50|min:10',
+            'sigla' => 'required|max:8|min:2',
+            'tempo' => 'required|max:2|min:1',
+            ]);*/
         
-        // Obtém os dados da variável de sessão "cursos"
-       $aux = session('cursos');
-
-       // Obtém o índice do array "$aux" onde está o "$id" buscado
-       $indice = array_search($id, array_column($aux, 'id'));
-
-       // Armazena os dados do cliente para o índice obtido
-       $dados = $aux[$indice];
-       
-       // retorna a "view" e passa os dados do cliente
-       return view('cursos.show', compact('dados'));
+        Curso::create([
+            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
+            'sigla' => $request->sigla,
+            'tempo' => $request->tempo,
+            'eixo_id' => $request->eixos,
+        ]);
+        
+        return redirect()->route('cursos.index');
     }
+
+    public function show($id) { }
 
     public function edit($id) {
+        
+        $data = Curso::find($id);
 
-        // Obtém os dados da variável de sessão "cursos"
-       $aux = session('cursos');
+        $eixos = Eixo::all();
 
-       // Obtém o índice do array "$aux" onde está o "$id" buscado
-       $indice = array_search($id, array_column($aux, 'id'));
+        return view('cursos.create', compact('eixos'));
 
-       // Armazena os dados do cliente para o índice obtido
-       $dados = $aux[$indice];
+        if(!isset($data)) { return "<h1>ID: $id não encontrado!</h1>"; }
 
-       // retorna a "view" e passa os dados do cliente
-       return view('cursos.edit', compact('dados')); 
+        return view('cursos.edit', compact('data'));    
     }
 
     public function update(Request $request, $id) {
-        
-        // Cria o array com os novos dados do cliente
-       $alterado = [
-        'id' => $id,
-        'nome' => $request->nome,
-        'email' => $request->email
-        ];
+     
+        $obj = Curso::find($id);
 
-        // Obtém os dados da variável de sessão "cursos"
-        $aux = session('cursos');
-        
-        // Obtém o índice do array "$aux" onde está o "$id" buscado
-        $indice = array_search($id, array_column($aux, 'id'));
-        
-        // Substitui os dados do cliente com as novas informações
-        $aux[$indice] = $alterado;
-        
-        // Atualiza a sessão com a nova alteração
-        session(['cursos' => $aux]);
-        
-        // redireciona para lista de cursos
+        if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
+
+        $obj->fill([
+            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
+            'sigla' => $request->sigla,
+            'tempo' => $request->tempo,
+            'eixo_id' => $request->eixos,
+        ]);
+
+        $obj->save();
+
         return redirect()->route('cursos.index');
     }
 
     public function destroy($id) {
         
-        // Obtém os dados da variável de sessão "cursos"
-        $aux = session('cursos');
+        $obj = Curso::find($id);
 
-        // Obtém o índice do array "$aux" onde está o "$id" buscado
-        $indice = array_search($id, array_column($aux, 'id'));
-        
-        // Remove o elemento em "indice" do array "$aux"
-        unset($aux[$indice]);
-        
-        // Atualiza a sessão com a nova alteração
-        session(['cursos' => $aux]);
-        
-        // redireciona para lista de cursos
+        if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
+
+        $obj->destroy($id);
+
         return redirect()->route('cursos.index');
     }
 }

@@ -20,11 +20,11 @@
     <div class="row">
         <div class="col" >
             <div class="input-group mb-3">
-                <span class="input-group-text bg-success text-white">Sigla</span>
+                <span class="input-group-text bg-success text-white">Abreviatura</span>
                 <input 
                     type="text" 
                     class="form-control" 
-                    value="{{$data->sigla}}"
+                    value="{{$data->abreviatura}}"
                     disabled
                 />
             </div>
@@ -66,6 +66,24 @@
                 >
                     @foreach ($eixos as $item)
                         <option value="{{$item->id}}" @if($item->id == $data->eixo_area_id) selected="true" @endif>
+                            {{ $item->nome }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" >
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-success text-white">Nível</span>
+                <select 
+                    class="form-select"
+                    class="form-control" 
+                    disabled
+                >
+                    @foreach ($niveis as $item)
+                        <option value="{{$item->id}}" @if($item->id == $data->nivel_id) selected="true" @endif>
                             {{ $item->nome }}
                         </option>
                     @endforeach

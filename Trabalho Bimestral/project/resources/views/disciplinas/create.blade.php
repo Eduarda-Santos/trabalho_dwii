@@ -1,10 +1,9 @@
-@extends('templates/main', ['titulo'=>"Alterar Curso"])
+@extends('templates/main', ['titulo'=>"Nova Disciplina"])
 
 @section('conteudo')
 
-<form action="{{ route('cursos.update', $data->id) }}" method="POST">
-    @csrf
-    @method('PUT')
+<form action="{{ route('disciplinas.store') }}" method="POST">
+    @csrf  
     <div class="row">
         <div class="col" >
             <div class="form-floating mb-3">
@@ -12,10 +11,10 @@
                     type="text" 
                     class="form-control @if($errors->has('nome')) is-invalid @endif" 
                     name="nome" 
-                    value="{{$data->nome}}"
                     placeholder="Nome"
+                    value="{{old('nome')}}"
                 />
-                <label for="nome">Nome do Curso</label>
+                <label for="nome">Nome da Disciplina</label>
                 @if($errors->has('nome'))
                     <div class='invalid-feedback'>
                         {{ $errors->first('nome') }}
@@ -24,46 +23,50 @@
             </div>
         </div>
     </div>
+    <div>
+        <div class="row">
+            <div class="col">
+                <div style="display:inline;">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-secondary">Cursos</button>
+                        </div>
+                        <table style="width: 1000px;">
+                            <select name="cursos" class="form-select" aria-label="Default select example">
+                                @foreach($cursos as $item)
+                                <option value="{{  $item->id  }}">
+                                    {{ $item->nome  }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col" >
             <div class="form-floating mb-3">
                 <input 
-                    type="number" 
-                    class="form-control @if($errors->has('tempo')) is-invalid @endif" 
-                    name="tempo" 
-                    placeholder="Tempo"
-                    value="{{$data->tempo}}"
+                    type="text" 
+                    class="form-control @if($errors->has('cursos')) is-invalid @endif" 
+                    name="carga" 
+                    placeholder="carga"
+                    value="{{old('carga')}}"
                 />
-                <label for="nome">Tempo</label>
-                @if($errors->has('tempo'))
+                <label for="cursos">Carga Horária</label>
+                @if($errors->has('cursos'))
                     <div class='invalid-feedback'>
-                        {{ $errors->first('tempo') }}
+                        {{ $errors->first('cursos') }}
                     </div>
                 @endif
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col" >
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-success text-white">Área/Eixo</span>
-                <select 
-                    name="eixos"
-                    class="form-select"
-                    class="form-control @if($errors->has('eixo')) is-invalid @endif" 
-                >
-                    @foreach ($eixos as $item)
-                        <option value="{{$item->id}}" @if($item->id == $data->eixo_id) selected="true" @endif>
-                            {{ $item->nome }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col">
-            <a href="{{route('cursos.index')}}" class="btn btn-secondary btn-block align-content-center">
+            <a href="{{route('professores.index')}}" class="btn btn-secondary btn-block align-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                     <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
                 </svg>

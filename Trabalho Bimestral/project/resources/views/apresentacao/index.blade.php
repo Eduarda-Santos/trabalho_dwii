@@ -1,4 +1,4 @@
-@extends('templates/main', ['titulo'=>"Site do NAPNE"])
+@extends('templates/main', ['titulo'=>"Novo Eixo/Área"])
 
 @section('conteudo')
 

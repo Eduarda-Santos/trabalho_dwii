@@ -13,8 +13,8 @@ use App\Http\Controllers\Veterinario;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
 
+*/
 Route::get('/', function () {
     return view('templates.main')->with('titulo', "");
 })->name('index');
@@ -23,8 +23,18 @@ Route::get('/', function () {
 // Route::get('/clientes', 'ClienteController@index');
 // Route::get('/clientes/{nome}/{idade}', 'ClienteController@index');
 
-Route::redirect('/clientes', 301);
-Route::resource('clientes', 'ClienteController');
+Route::redirect('/eixos', 301);
+Route::resource('eixos', 'EixoController');
 
-Route::redirect('/veterinarios', 302);
-Route::resource('veterinarios', 'VeterinarioController');
+Route::redirect('/cursos', 302);
+Route::resource('cursos', 'CursoController');
+
+
+Route::redirect('/professores', 303);
+Route::resource('professores', 'ProfessorController');
+
+Route::redirect('/disciplinas', 304);
+Route::resource('disciplinas', 'DisciplinaController');
+
+Route::redirect('/docencia', 305);
+Route::resource('docencia', 'DocenciaController');

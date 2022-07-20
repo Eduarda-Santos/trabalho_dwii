@@ -1,14 +1,14 @@
-@extends('templates/main', ['titulo'=>"Novo Curso"])
+@extends('templates/main', ['titulo'=>"Novo Professor"])
 
 @section('conteudo')
 
-<form action="{{ route('cursos.store') }}" method="POST">
+<form action="{{ route('professores.store') }}" method="POST">
     @csrf
     <div class="row">
         <div class="col">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control @if($errors->has('nome')) is-invalid @endif" name="nome" placeholder="Nome" value="{{old('nome')}}" />
-                <label for="nome">Nome do Curso</label>
+                <label for="nome">Nome do Professor</label>
                 @if($errors->has('nome'))
                 <div class='invalid-feedback'>
                     {{ $errors->first('nome') }}
@@ -20,11 +20,11 @@
     <div class="row">
         <div class="col">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control @if($errors->has('sigla')) is-invalid @endif" name="sigla" placeholder="sigla" value="{{old('sigla')}}" />
-                <label for="nome">Sigla do Curso</label>
-                @if($errors->has('sigla'))
+                <input type="text" class="form-control @if($errors->has('email')) is-invalid @endif" name="email" placeholder="email" value="{{old('email')}}" />
+                <label for="email">E-mail</label>
+                @if($errors->has('email'))
                 <div class='invalid-feedback'>
-                    {{ $errors->first('sigla') }}
+                    {{ $errors->first('email') }}
                 </div>
                 @endif
             </div>
@@ -33,11 +33,11 @@
     <div class="row">
         <div class="col">
             <div class="form-floating mb-3">
-                <input type="number" class="form-control @if($errors->has('tempo')) is-invalid @endif" name="tempo" placeholder="Tempo" value="{{old('tempo')}}" />
-                <label for="nome">Tempo do Curso(anos)</label>
-                @if($errors->has('tempo'))
+                <textarea type="text" class="form-control @if($errors->has('siape')) is-invalid @endif" name="siape" placeholder="siape">{{old('descicao')}}</textarea>
+                <label for="siape">Siape do Professor</label>
+                @if($errors->has('siape'))
                 <div class='invalid-feedback'>
-                    {{ $errors->first('tempo') }}
+                    {{ $errors->first('siape') }}
                 </div>
                 @endif
             </div>
@@ -65,10 +65,22 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col">
-            <a href="{{route('cursos.index')}}" class="btn btn-secondary btn-block align-content-center">
+            <div class="form-floating mb-3">
+                <textarea type="text" class="form-control @if($errors->has('ativo')) is-invalid @endif" name="ativo" placeholder="ativo">{{old('ativo')}}</textarea>
+                <label for="siape">Ativo(0 ou 1)</label>
+                @if($errors->has('ativo'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('ativo') }}
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="{{route('professores.index')}}" class="btn btn-secondary btn-block align-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                     <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
                 </svg>

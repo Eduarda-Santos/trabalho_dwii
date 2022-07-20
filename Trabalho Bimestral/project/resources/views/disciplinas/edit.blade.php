@@ -1,10 +1,9 @@
-@extends('templates/main', ['titulo'=>"Alterar Curso"])
+@extends('templates/main', ['titulo'=>"Alterar Disciplina"])
 
 @section('conteudo')
 
-<form action="{{ route('cursos.update', $data->id) }}" method="POST">
-    @csrf
-    @method('PUT')
+<form action="{{ route('disciplinas.update', $data->id) }}" method="POST">
+    @csrf  
     <div class="row">
         <div class="col" >
             <div class="form-floating mb-3">
@@ -12,10 +11,10 @@
                     type="text" 
                     class="form-control @if($errors->has('nome')) is-invalid @endif" 
                     name="nome" 
-                    value="{{$data->nome}}"
                     placeholder="Nome"
+                    value="{{old('nome')}}"
                 />
-                <label for="nome">Nome do Curso</label>
+                <label for="nome">Nome da Disciplina</label>
                 @if($errors->has('nome'))
                     <div class='invalid-feedback'>
                         {{ $errors->first('nome') }}
@@ -28,16 +27,16 @@
         <div class="col" >
             <div class="form-floating mb-3">
                 <input 
-                    type="number" 
-                    class="form-control @if($errors->has('tempo')) is-invalid @endif" 
-                    name="tempo" 
-                    placeholder="Tempo"
-                    value="{{$data->tempo}}"
+                    type="text" 
+                    class="form-control @if($errors->has('cursos')) is-invalid @endif" 
+                    name="carga" 
+                    placeholder="carga"
+                    value="{{old('carga')}}"
                 />
-                <label for="nome">Tempo</label>
-                @if($errors->has('tempo'))
+                <label for="cursos">Carga Horária</label>
+                @if($errors->has('cursos'))
                     <div class='invalid-feedback'>
-                        {{ $errors->first('tempo') }}
+                        {{ $errors->first('cursos') }}
                     </div>
                 @endif
             </div>
@@ -45,19 +44,20 @@
     </div>
     <div class="row">
         <div class="col" >
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-success text-white">Área/Eixo</span>
-                <select 
-                    name="eixos"
-                    class="form-select"
-                    class="form-control @if($errors->has('eixo')) is-invalid @endif" 
-                >
-                    @foreach ($eixos as $item)
-                        <option value="{{$item->id}}" @if($item->id == $data->eixo_id) selected="true" @endif>
-                            {{ $item->nome }}
-                        </option>
-                    @endforeach
-                </select>
+            <div class="form-floating mb-3">
+                <input 
+                    type="text" 
+                    class="form-control @if($errors->has('carga')) is-invalid @endif" 
+                    name="carga" 
+                    placeholder="carga"
+                    value="{{old('carga')}}"
+                />
+                <label for="email">Carga Horária</label>
+                @if($errors->has('carga'))
+                    <div class='invalid-feedback'>
+                        {{ $errors->first('carga') }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
