@@ -82,5 +82,12 @@
             </a>
         </div>
     </div>
+    @if(isset($errors))
+    @foreach($errors->all() as $erro)
+    <div class="alert alert-danger">
+        {{ $erro }}
+    </div>
+    @endforeach
+    @endif
 </form>
 @endsection

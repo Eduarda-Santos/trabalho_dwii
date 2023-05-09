@@ -2,24 +2,37 @@
 
 @section('conteudo')
 
-<form action="{{ route('cursos.update', $data->id) }}" method="POST">
+<form action="{{ route('professores.update', $data->id) }}" method="POST">
     @csrf
     @method('PUT')
-    <div class="row">
-        <div class="col" >
-            <div class="form-floating mb-3">
-                <input 
-                    type="text" 
-                    class="form-control @if($errors->has('nome')) is-invalid @endif" 
-                    name="nome" 
-                    value="{{$data->nome}}"
-                    placeholder="Nome"
-                />
-                <label for="nome">Nome do Curso</label>
-                @if($errors->has('nome'))
+    <div class="container my-3">           
+        <div class="row">
+            <div class="col mb-3">
+                <div class="form-check form-check-inline @if($errors->has('status')) is-invalid @endif p-0 m-0 ">
+                    <input class="btn-check" type="radio" name="status" id="status" value="1">
+                    <label class="btn btn-outline-secondary" for="status">ATIVO</label>
+                </div>
+                <div class="form-check form-check-inline @if($errors->has('status')) is-invalid @endif ">
+                    <input class="btn-check" type="radio" name="status" id="status" value="0">
+                    <label class="btn btn-outline-secondary" for="status">INATIVO</label>
+                </div>
+                @if($errors->has('status'))
                     <div class='invalid-feedback'>
-                        {{ $errors->first('nome') }}
+                        {{ $errors->first('status') }}
                     </div>
+                @endif
+                </div>
+            </div>
+        <div class="row">
+    <div class="row">
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control @if($errors->has('nome')) is-invalid @endif" value="{{$data->nome}}" name="nome" placeholder="Nome" value="{{old('nome')}}" />
+                <label for="nome">Nome do Professor</label>
+                @if($errors->has('nome'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('nome') }}
+                </div>
                 @endif
             </div>
         </div>
@@ -27,84 +40,48 @@
     <div class="row">
         <div class="col">
             <div class="form-floating mb-3">
-                <textarea
-                    type="text"
-                    class="form-control @if($errors->has('descricao')) is-invalid @endif"
-                    name="descricao"
-                    placeholder="Descrição"
-                    style="min-height: 100px"
-                >{{$data->descricao}}</textarea>
-                <label for="descricao">Descrição do Curso</label>
-                @if($errors->has('descricao'))
-                    <div class='invalid-feedback'>
-                        {{ $errors->first('descricao') }}
-                    </div>
+                <input type="text" class="form-control @if($errors->has('email')) is-invalid @endif" name="email" placeholder="email" value="{{old('email')}}" />
+                <label for="email">E-mail</label>
+                @if($errors->has('email'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('email') }}
+                </div>
                 @endif
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col" >
+        <div class="col">
             <div class="form-floating mb-3">
-                <input 
-                    type="number" 
-                    class="form-control @if($errors->has('tempo')) is-invalid @endif" 
-                    name="tempo" 
-                    placeholder="Tempo"
-                    value="{{$data->tempo}}"
-                />
-                <label for="nome">Tempo</label>
-                @if($errors->has('tempo'))
-                    <div class='invalid-feedback'>
-                        {{ $errors->first('tempo') }}
-                    </div>
+                <textarea type="text" class="form-control @if($errors->has('siape')) is-invalid @endif" name="siape" placeholder="siape">{{old('descicao')}}</textarea>
+                <label for="siape">Siape do Professor</label>
+                @if($errors->has('siape'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('siape') }}
+                </div>
                 @endif
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col" >
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-success text-white">Área/Eixo</span>
-                <select 
-                    name="eixo"
-                    class="form-select"
-                    class="form-control @if($errors->has('eixo')) is-invalid @endif" 
-                >
-                    @foreach ($eixos as $item)
-                        <option value="{{$item->id}}" @if($item->id == $data->eixo_area_id) selected="true" @endif>
-                            {{ $item->nome }}
-                        </option>
-                    @endforeach
-                </select>
-                @if($errors->has('eixo'))
-                    <div class='invalid-feedback'>
-                        {{ $errors->first('eixo') }}
+    <div>
+        <div class="row">
+            <div class="col">
+                <div style="display:inline;">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-secondary">Eixo/Área</button>
+                        </div>
+                        <table style="width: 1000px;">
+                            <select name="eixos" class="form-select" aria-label="Default select example">
+                                @foreach($eixos as $item)
+                                <option value="{{  $item->id  }}">
+                                    {{ $item->nome  }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </table>
                     </div>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col" >
-            <div class="input-group mb-3">
-                <span class="input-group-text bg-success text-white">Nível</span>
-                <select 
-                    name="nivel"
-                    class="form-select"
-                    class="form-control @if($errors->has('nivel')) is-invalid @endif" 
-                >
-                    @foreach ($niveis as $item)
-                        <option value="{{$item->id}}" @if($item->id == $data->nivel_id) selected="true" @endif>
-                            {{ $item->nome }}
-                        </option>
-                    @endforeach
-                </select>
-                @if($errors->has('nivel'))
-                    <div class='invalid-feedback'>
-                        {{ $errors->first('nivel') }}
-                    </div>
-                @endif
+                </div>
             </div>
         </div>
     </div>

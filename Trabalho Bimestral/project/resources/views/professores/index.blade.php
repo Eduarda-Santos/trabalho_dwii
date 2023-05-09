@@ -8,10 +8,10 @@
             
             <x-datalist
                 :title="'Professores'"
-                :header="['NOME', 'EMAIL', 'AÇÕES']" 
+                :header="['STATUS','NOME', 'EMAIL', 'AÇÕES']" 
                 :data="$data"
-                :fields="['nome', 'email']"
-                :hide="[true, true, false, true, false]" 
+                :fields="['status','nome', 'email']"
+                :hide="[true, true, true, false]" 
                 :crud="'professores'"
                 :info="['nome', 'email']"
                 :remove="'nome'"

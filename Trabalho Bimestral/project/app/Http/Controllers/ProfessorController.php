@@ -23,11 +23,11 @@ class ProfessorController extends Controller {
     public function store(Request $request) {
         
         Professor::create([
+            'status' => $request->status,
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'email' => $request->email,
             'siape' => $request->siape,
-            'eixo_id' => $request->eixos, 'UTF-8',
-            'ativo' => $request->ativo,
+            'eixo_id' => $request->eixos, 'UTF-8'
         ]);
         
         return redirect()->route('professores.index');
@@ -55,11 +55,11 @@ class ProfessorController extends Controller {
         if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
 
         $obj->fill([
+            'status' => $request->status,
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'email' => $request->email,
             'siape' => $request->siape,
-            'eixo_id' => $request->eixos, 'UTF-8',
-            'ativo' => $request->ativo,
+            'eixo_id' => $request->eixos, 'UTF-8'
         ]);
 
         $obj->save();

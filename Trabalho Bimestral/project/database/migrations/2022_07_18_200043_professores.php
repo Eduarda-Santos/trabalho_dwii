@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('professores', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status');
             $table->string('email');
             $table->string('nome');
             $table->integer('siape');
             $table->unsignedBigInteger('eixo_id');
             $table->foreign('eixo_id')->references('id')->on('eixos');
-            $table->boolean('ativo');
             $table->timestamps();
         });
     }

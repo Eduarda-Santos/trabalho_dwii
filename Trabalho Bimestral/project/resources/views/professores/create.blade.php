@@ -4,6 +4,26 @@
 
 <form action="{{ route('professores.store') }}" method="POST">
     @csrf
+
+    <div class="container my-3">           
+        <div class="row">
+            <div class="col mb-3">
+                <div class="form-check form-check-inline @if($errors->has('status')) is-invalid @endif p-0 m-0 ">
+                    <input class="btn-check" type="radio" name="status" id="status" value="1">
+                    <label class="btn btn-outline-secondary" for="status">ATIVO</label>
+                </div>
+                <div class="form-check form-check-inline @if($errors->has('status')) is-invalid @endif ">
+                    <input class="btn-check" type="radio" name="status" id="status" value="0">
+                    <label class="btn btn-outline-secondary" for="status">INATIVO</label>
+                </div>
+                @if($errors->has('status'))
+                    <div class='invalid-feedback'>
+                        {{ $errors->first('status') }}
+                    </div>
+                @endif
+                </div>
+            </div>
+        <div class="row">
     <div class="row">
         <div class="col">
             <div class="form-floating mb-3">
@@ -67,19 +87,6 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="form-floating mb-3">
-                <textarea type="text" class="form-control @if($errors->has('ativo')) is-invalid @endif" name="ativo" placeholder="ativo">{{old('ativo')}}</textarea>
-                <label for="siape">Ativo(0 ou 1)</label>
-                @if($errors->has('ativo'))
-                <div class='invalid-feedback'>
-                    {{ $errors->first('ativo') }}
-                </div>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
             <a href="{{route('professores.index')}}" class="btn btn-secondary btn-block align-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                     <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
@@ -94,5 +101,12 @@
             </a>
         </div>
     </div>
+    @if(isset($errors))
+    @foreach($errors->all() as $erro)
+    <div class="alert alert-danger">
+        {{ $erro }}
+    </div>
+    @endforeach
+    @endif
 </form>
 @endsection

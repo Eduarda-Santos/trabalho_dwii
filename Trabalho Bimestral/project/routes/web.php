@@ -15,13 +15,9 @@ use App\Http\Controllers\Veterinario;
 |
 
 */
-Route::get('/', function () {
+Route::get('/clientes', function () {
     return view('templates.main')->with('titulo', "");
 })->name('index');
-
-// Route::get('/clientes', [ClienteController::class, 'index']);
-// Route::get('/clientes', 'ClienteController@index');
-// Route::get('/clientes/{nome}/{idade}', 'ClienteController@index');
 
 Route::redirect('/eixos', 301);
 Route::resource('eixos', 'EixoController');

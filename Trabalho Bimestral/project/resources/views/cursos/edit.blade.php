@@ -3,7 +3,7 @@
 @section('conteudo')
 
 <form action="{{ route('cursos.update', $data->id) }}" method="POST">
-    @csrf
+@csrf
     @method('PUT')
     <div class="row">
         <div class="col" >
