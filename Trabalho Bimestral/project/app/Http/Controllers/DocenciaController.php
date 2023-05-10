@@ -28,7 +28,7 @@ class DocenciaController extends Controller {
         Docencia::create([
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'professor_id' => $request->professor,
-            'disciplina_id' => $request->disciplina,
+            'disciplina_id' => $request->disciplinas,
         ]);
         
         return redirect()->route('docencia.index');

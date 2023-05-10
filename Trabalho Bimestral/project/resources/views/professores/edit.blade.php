@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col">
             <div class="form-floating mb-3">
-                <textarea type="text" class="form-control @if($errors->has('siape')) is-invalid @endif" name="siape" placeholder="siape">{{old('descicao')}}</textarea>
+                <textarea type="text" class="form-control @if($errors->has('siape')) is-invalid @endif" name="siape" placeholder="siape">{{old('siape')}}</textarea>
                 <label for="siape">Siape do Professor</label>
                 @if($errors->has('siape'))
                 <div class='invalid-feedback'>

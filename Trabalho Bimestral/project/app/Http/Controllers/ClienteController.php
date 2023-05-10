@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller {
     
-    // define um atributo com array inicial e dados
-    public $dados = [[
+    // define um atributo com array inicial e data
+    public $data = [[
         'id' => 1,
         'nome'  => 'eduarda',
         'email' => 'eduarda@gmail.com'
@@ -21,15 +21,15 @@ class ClienteController extends Controller {
         // verifica se a sessão já estava setada
         if(!isset($aux)) {
             // seta a sessão "clientes" com o array
-            session(['clientes' => $this->dados]);
+            session(['clientes' => $this->data]);
         }
     }
 
     public function index() {
-        $dados = session('clientes');
+        $data = session('clientes');
         $clinica = "VetClin DWII";
-        // Passa um array de dados com "clientes" e "clínicas"
-        return view('clientes.index', compact(['dados', 'clinica']));
+        // Passa um array de data com "clientes" e "clínicas"
+        return view('clientes.index', compact(['data', 'clinica']));
     }
 
     public function create() {
@@ -39,10 +39,10 @@ class ClienteController extends Controller {
 
     public function store(Request $request) {
 
-        // obtém os dados da sessão "clientes"
+        // obtém os data da sessão "clientes"
        $aux = session('clientes');
        
-       // retorna um array contendo apenas os dados da coluna "id"
+       // retorna um array contendo apenas os data da coluna "id"
        $ids = array_column($aux, 'id');
        
        // verifica o total de elementos do array "id"
@@ -55,7 +55,7 @@ class ClienteController extends Controller {
            $new_id = 1;
        }
        
-       // Array com os dados do novo cadastro
+       // Array com os data do novo cadastro
        $novo = [  
            'id' => $new_id,
            'nome' => $request->nome,
@@ -74,50 +74,50 @@ class ClienteController extends Controller {
 
     public function show($id) {
         
-        // Obtém os dados da variável de sessão "clientes"
+        // Obtém os data da variável de sessão "clientes"
        $aux = session('clientes');
 
        // Obtém o índice do array "$aux" onde está o "$id" buscado
        $indice = array_search($id, array_column($aux, 'id'));
 
-       // Armazena os dados do cliente para o índice obtido
-       $dados = $aux[$indice];
+       // Armazena os data do cliente para o índice obtido
+       $data = $aux[$indice];
        
-       // retorna a "view" e passa os dados do cliente
-       return view('clientes.show', compact('dados'));
+       // retorna a "view" e passa os data do cliente
+       return view('clientes.show', compact('data'));
     }
 
     public function edit($id) {
 
-        // Obtém os dados da variável de sessão "clientes"
+        // Obtém os data da variável de sessão "clientes"
        $aux = session('clientes');
 
        // Obtém o índice do array "$aux" onde está o "$id" buscado
        $indice = array_search($id, array_column($aux, 'id'));
 
-       // Armazena os dados do cliente para o índice obtido
-       $dados = $aux[$indice];
+       // Armazena os data do cliente para o índice obtido
+       $data = $aux[$indice];
 
-       // retorna a "view" e passa os dados do cliente
-       return view('clientes.edit', compact('dados')); 
+       // retorna a "view" e passa os data do cliente
+       return view('clientes.edit', compact('data')); 
     }
 
     public function update(Request $request, $id) {
         
-        // Cria o array com os novos dados do cliente
+        // Cria o array com os novos data do cliente
        $alterado = [
         'id' => $id,
         'nome' => $request->nome,
         'email' => $request->email
         ];
 
-        // Obtém os dados da variável de sessão "clientes"
+        // Obtém os data da variável de sessão "clientes"
         $aux = session('clientes');
         
         // Obtém o índice do array "$aux" onde está o "$id" buscado
         $indice = array_search($id, array_column($aux, 'id'));
         
-        // Substitui os dados do cliente com as novas informações
+        // Substitui os data do cliente com as novas informações
         $aux[$indice] = $alterado;
         
         // Atualiza a sessão com a nova alteração
@@ -129,7 +129,7 @@ class ClienteController extends Controller {
 
     public function destroy($id) {
         
-        // Obtém os dados da variável de sessão "clientes"
+        // Obtém os data da variável de sessão "clientes"
         $aux = session('clientes');
 
         // Obtém o índice do array "$aux" onde está o "$id" buscado

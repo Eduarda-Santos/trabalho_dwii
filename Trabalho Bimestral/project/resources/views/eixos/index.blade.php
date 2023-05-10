@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Eixos", 'rota' => "eixos.create"])
 
-@section('titulo') Cursos @endsection
+@section('titulo') Eixos @endsection
 @section('conteudo')
 
     <div class="row">

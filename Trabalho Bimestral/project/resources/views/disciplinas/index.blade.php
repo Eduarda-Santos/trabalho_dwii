@@ -8,10 +8,10 @@
             
             <x-datalist
                 :title="'Disciplinas'"
-                :header="['NOME', 'CURSO', 'AÇÕES']" 
+                :header="['NOME', 'CARGA', 'AÇÕES']" 
                 :data="$data"
-                :fields="['nome', 'curso_id']"
-                :hide="[true, true, false, true, false]" 
+                :fields="['nome', 'carga']"
+                :hide="[true, false, true, false]" 
                 :crud="'disciplinas'"
                 :info="['id', 'nome', 'carga']"
                 :remove="'nome'"

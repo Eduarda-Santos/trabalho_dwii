@@ -7,19 +7,13 @@
     <div class="row">
         <div class="col" >
             <div class="form-floating mb-3">
-                <input 
-                    type="text" 
-                    class="form-control @if($errors->has('nome')) is-invalid @endif" 
-                    name="nome" 
-                    placeholder="Nome"
-                    value="{{old('nome')}}"
-                />
-                <label for="nome">Nome da Disciplina</label>
-                @if($errors->has('nome'))
-                    <div class='invalid-feedback'>
-                        {{ $errors->first('nome') }}
-                    </div>
-                @endif
+                <input type="text" class="form-control @if($errors->has('nome')) is-invalid @endif" name="nome" placeholder="Nome" value="{{old('nome')}}" />
+                    <label for="nome">Nome da Disciplina</label>
+                    @if($errors->has('nome'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('nome') }}
+                        </div>
+                    @endif
             </div>
         </div>
     </div>
@@ -50,15 +44,15 @@
             <div class="form-floating mb-3">
                 <input 
                     type="text" 
-                    class="form-control @if($errors->has('cursos')) is-invalid @endif" 
+                    class="form-control @if($errors->has('carga')) is-invalid @endif" 
                     name="carga" 
                     placeholder="carga"
                     value="{{old('carga')}}"
                 />
-                <label for="cursos">Carga Horária</label>
-                @if($errors->has('cursos'))
+                <label for="carga">Carga Horária</label>
+                @if($errors->has('carga'))
                     <div class='invalid-feedback'>
-                        {{ $errors->first('cursos') }}
+                        {{ $errors->first('carga') }}
                     </div>
                 @endif
             </div>
