@@ -1,34 +1,67 @@
 @extends('templates/main', ['titulo'=>"Docência"])
-@section('titulo') Docência @endsection
+@section('titulo') Disciplinas/Professores @endsection
 @section('conteudo')
 
 <form action="{{ route('docencia.store') }}" method="POST">
 @csrf
+<head>
+    <style>
+    {
+        box-sizing: border-box;
+    }
+    /* Set additional styling options for the columns*/
+    .column {
+    float: left;
+    width: 50%;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+    select.form-select{
+    width: 150px;
+    font-weight: 500;
+    font-size: 16px;
+    margin-right: 10px;
+    }
+    </style>
+ </head>
     <div class="row">
         <div class="col">
             <div>
+                <caption>Tabela de <b>Disciplinas/Professores</b></caption>
                 <table style="width: 50%" class="table align-middle caption-top table-striped">
-                    <caption>Tabela de <b>Docência</b></caption>
-                    @foreach ($professor as $item)
-                    <tr>
-                        <td>{{ $item['nome'] }}</td>
-                    </tr>
-                    @endforeach  
-                    <div class="col-sm-9 col-md-6">
-                <table style="width: 50%">
-                    <select name="professor" class="form-select" aria-label="Default select example">
-                        @foreach($professor as $item)
-                        <option value="{{  $item->id  }}">
-                            {{ $item->nome  }}
-                        </option>
-                        @endforeach
-                    </select>
+                    <div class="row">
+                        <div class="column">
+                            <h2>Professor</h2>
+                            <tr>
+                                <select name="professor" class="form-select">
+                                    @foreach($professor as $item)
+                                    <option value="{{  $item->id  }}">
+                                        {{ $item->nome  }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </tr>
+                        </div>
+                        <div class="column">
+                            <h2>Professor</h2>
+                            <tr>
+                                <select name="professor" class="form-select">
+                                    @foreach($professor as $item)
+                                    <option value="{{  $item->id  }}">
+                                        {{ $item->nome  }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </tr>
+                        </div>
+                    </div>
                 </table>
             </div>
-                </table> 
-                
-            </div>
-            
         </div>
     </div>
     <div class="row">

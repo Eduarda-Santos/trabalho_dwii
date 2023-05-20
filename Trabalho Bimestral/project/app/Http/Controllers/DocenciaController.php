@@ -17,6 +17,13 @@ class DocenciaController extends Controller {
 
     public function create() {
 
+        $data = "";
+        $docencia = [];
+        $docencia = explode("-", $data);
+
+        echo $professor_id = $docencia[0];
+        //echo $disciplina_id = $docencia[1];
+
         $professor = Professor::all();
         return view('docencia.create', compact(('professor')));
         $disciplinas = Disciplina::all();
@@ -26,7 +33,6 @@ class DocenciaController extends Controller {
     public function store(Request $request) {
         
         Docencia::create([
-            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'professor_id' => $request->professor,
             'disciplina_id' => $request->disciplinas,
         ]);
@@ -52,7 +58,6 @@ class DocenciaController extends Controller {
         if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
 
         $obj->fill([
-            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'professor_id' => $request->professor,
             'disciplina_id' => $request->disciplina,
         ]);

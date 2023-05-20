@@ -1,5 +1,6 @@
-@extends('templates/main', ['titulo'=>"Docencia", 'rota'=>"docencia.create"])
+@extends('templates/main', ['titulo'=>"Disciplinas/Professores", 'rota'=>"docencia.create"])
 
+@section('titulo') Disciplinas @endsection
 @section('conteudo')
 
 <div class="row">

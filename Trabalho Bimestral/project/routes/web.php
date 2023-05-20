@@ -15,7 +15,7 @@ use App\Models\Professor;
 |
 
 */
-Route::get('/clientes', function () {
+Route::get('/', function () {
     return view('templates.main')->with('titulo', "");
 })->name('index');
 
@@ -60,6 +60,6 @@ Route::post('docencia/add', function(Request $request) {
 //cursos docencia
 Route::get('/docencias', function () {
     $docencia = Docencia::with(['professor'->orderBy('id', 'nome')])->get();
-    $docencia = Docencia::with(['disciplina'->orderBy('id', 'nome')])->get();
+    $docencia = Docencia::with(['disciplinas'->orderBy('id', 'nome')])->get();
     return $docencia->toJson();
 });
