@@ -23,18 +23,18 @@
                                 <div class="col">
                                     <div style="display:inline;">
                                         <div class="input-group mb-3">
-                                            <select name="professor" class="form-select">
-                                                @foreach($professor as $item)
-                                                <option value="{{  $item->id  }}">
-                                                    {{ $item->nome  }}
-                                                </option>
-                                                @endforeach
-                                            </select>
                                             <select name="disciplinas" class="form-select" >
                                                 @foreach($disciplinas as $item)
                                                     <option value="{{  $item->id  }}">
                                                         {{ $item->nome  }}
                                                     </option>
+                                                @endforeach
+                                            </select>
+                                            <select name="professor" class="form-select">
+                                                @foreach($professor as $item)
+                                                <option value="{{  $item->id  }}">
+                                                    {{ $item->nome  }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
