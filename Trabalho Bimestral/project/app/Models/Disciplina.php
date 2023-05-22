@@ -9,5 +9,5 @@ class Disciplina extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','nome', 'curso_id', 'carga'];
+    protected $fillable = ['nome', 'curso_id', 'carga'];
 }

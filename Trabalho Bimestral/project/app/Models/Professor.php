@@ -9,7 +9,7 @@ class Professor extends Model
 {
     use HasFactory;
 
-    public function disciplina() {
+    public function disciplinas() {
         return $this->hasMany('\App\Models\Disciplina');
     }
 

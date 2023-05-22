@@ -17,17 +17,17 @@ class DocenciaController extends Controller {
 
     public function create() {
 
-        $data = "";
+        /*$data = "";
         $docencia = [];
         $docencia = explode("-", $data);
 
         echo $professor_id = $docencia[0];
         //echo $disciplina_id = $docencia[1];
-
+        
+*/
         $professor = Professor::all();
-        return view('docencia.create', compact(('professor')));
         $disciplinas = Disciplina::all();
-        return view('docencia.create', compact(('disciplinas')));
+        return view('docencia.create', compact((['professor','disciplinas'])));
     }
 
     public function store(Request $request) {
@@ -59,7 +59,7 @@ class DocenciaController extends Controller {
 
         $obj->fill([
             'professor_id' => $request->professor,
-            'disciplina_id' => $request->disciplina,
+            'disciplina_id' => $request->disciplinas,
         ]);
 
         $obj->save();

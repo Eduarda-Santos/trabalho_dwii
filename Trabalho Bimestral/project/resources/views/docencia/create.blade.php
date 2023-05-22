@@ -4,31 +4,6 @@
 
 <form action="{{ route('docencia.store') }}" method="POST">
 @csrf
-<head>
-    <style>
-    {
-        box-sizing: border-box;
-    }
-    /* Set additional styling options for the columns*/
-    .column {
-    float: left;
-    width: 50%;
-    }
-
-    .row:after {
-    content: "";
-    display: table;
-    clear: both;
-    }
-
-    select.form-select{
-    width: 150px;
-    font-weight: 500;
-    font-size: 16px;
-    margin-right: 10px;
-    }
-    </style>
- </head>
  <div class="row">
     <div class="col">
         <table class="table align-middle caption-top table-striped">
@@ -40,7 +15,6 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $item)
                 <tr>
                     <div>
                         <table class="table table-striped">
@@ -49,29 +23,26 @@
                                 <div class="col">
                                     <div style="display:inline;">
                                         <div class="input-group mb-3">
-                                            <table>
-                                                <select name="professores" class="form-select">
-                                                    @foreach($item as $professor)
-                                                    <option value="{{  $professor->id  }}">
-                                                        {{ $professor->nome  }}
+                                            <select name="professor" class="form-select">
+                                                @foreach($professor as $item)
+                                                <option value="{{  $item->id  }}">
+                                                    {{ $item->nome  }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                            <select name="disciplinas" class="form-select" >
+                                                @foreach($disciplinas as $item)
+                                                    <option value="{{  $item->id  }}">
+                                                        {{ $item->nome  }}
                                                     </option>
-                                                    @endforeach
-                                                </select>
-                                                <select name="professores" class="form-select" >
-                                                    @foreach($item as $disciplinas)
-                                                    <option value="{{  $disciplinas->id  }}">
-                                                        {{ $disciplinas->nome  }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                            </table>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                         </table>
                     </div>
                 </div>
-                @endforeach
     <div class="row">
         <div class="col">
             <a href="{{route('docencia.index')}}" class="btn btn-secondary btn-block align-content-center">

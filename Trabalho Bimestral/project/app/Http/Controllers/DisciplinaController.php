@@ -54,7 +54,7 @@ class DisciplinaController extends Controller {
 
         $obj->fill([
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
-            'curso_id' => $request->curso,
+            'curso_id' => $request->cursos,
             'carga' => $request->carga,
         ]);
 
