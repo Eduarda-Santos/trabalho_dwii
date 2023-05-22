@@ -29,41 +29,49 @@
     }
     </style>
  </head>
-    <div class="row">
-        <div class="col">
-            <div>
-                <caption>Tabela de <b>Disciplinas/Professores</b></caption>
-                <table style="width: 50%" class="table align-middle caption-top table-striped">
-                    <div class="row">
-                        <div class="column">
-                            <h2>Professor</h2>
-                            <tr>
-                                <select name="professor" class="form-select">
-                                    @foreach($professor as $item)
-                                    <option value="{{  $item->id  }}">
-                                        {{ $item->nome  }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </tr>
-                        </div>
-                        <div class="column">
-                            <h2>Professor</h2>
-                            <tr>
-                                <select name="professor" class="form-select">
-                                    @foreach($professor as $item)
-                                    <option value="{{  $item->id  }}">
-                                        {{ $item->nome  }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </tr>
-                        </div>
+ <div class="row">
+    <div class="col">
+        <table class="table align-middle caption-top table-striped">
+            <caption>Tabela de <b>Docencia</b> no sistema</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Professor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data as $item)
+                <tr>
+                    <div>
+                        <table class="table table-striped">
+                            <td class="d-none d-md-table-cell"></td>
+                            <div class="row">
+                                <div class="col">
+                                    <div style="display:inline;">
+                                        <div class="input-group mb-3">
+                                            <table>
+                                                <select name="professores" class="form-select">
+                                                    @foreach($item as $professor)
+                                                    <option value="{{  $professor->id  }}">
+                                                        {{ $professor->nome  }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                <select name="professores" class="form-select" >
+                                                    @foreach($item as $disciplinas)
+                                                    <option value="{{  $disciplinas->id  }}">
+                                                        {{ $disciplinas->nome  }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                        </table>
                     </div>
-                </table>
-            </div>
-        </div>
-    </div>
+                </div>
+                @endforeach
     <div class="row">
         <div class="col">
             <a href="{{route('docencia.index')}}" class="btn btn-secondary btn-block align-content-center">

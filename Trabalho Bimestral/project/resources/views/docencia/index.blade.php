@@ -18,16 +18,23 @@
                 <tr>
                     <div>
                         <table class="table table-striped">
-                            <td class="d-none d-md-table-cell">{{ $item->disciplinas_id }}</td>
+                            <td class="d-none d-md-table-cell"></td>
                             <div class="row">
                                 <div class="col">
                                     <div style="display:inline;">
                                         <div class="input-group mb-3">
-                                            <table style="width: 1000px;">
-                                                <select name="professores" class="form-select" aria-label="Default select example">
-                                                    @foreach($professores as $item)
-                                                    <option value="{{  $item->id  }}">
-                                                        {{ $item->nome  }}
+                                            <table>
+                                                <select name="professores" class="form-select">
+                                                    @foreach($item as $professor)
+                                                    <option value="{{  $professor->id  }}">
+                                                        {{ $professor->nome  }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                <select name="professores" class="form-select" >
+                                                    @foreach($item as $disciplinas)
+                                                    <option value="{{  $disciplinas->id  }}">
+                                                        {{ $disciplinas->nome  }}
                                                     </option>
                                                     @endforeach
                                                 </select>
@@ -36,8 +43,8 @@
                                     </div>
                                 </div>
                         </table>
-                        </div>
                     </div>
+                </div>
                     <td>
                         <a nohref style="cursor:pointer" onclick="showInfoModal('{{ $item }}', '{{ json_encode($info) }}')" class="btn btn-primary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
@@ -61,5 +68,4 @@
         </table>
     </div>
 </div>
-
 @endsection
