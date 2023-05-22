@@ -23,7 +23,6 @@
                                 <div class="col">
                                     <div style="display:inline;">
                                         <div class="input-group mb-3">
-                                            <table>
                                                 <select name="professores" class="form-select">
                                                     @foreach($item as $professor)
                                                     <option value="{{  $professor->id  }}">
@@ -38,7 +37,6 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
