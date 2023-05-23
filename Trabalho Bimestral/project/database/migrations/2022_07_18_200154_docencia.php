@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('docencia', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('professor_id');
             $table->foreign('professor_id')->references('id')->on('professores');
             $table->unsignedBigInteger('disciplina_id');
             $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->timestamps();
         });
     }
 

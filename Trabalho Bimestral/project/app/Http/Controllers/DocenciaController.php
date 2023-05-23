@@ -11,23 +11,24 @@ class DocenciaController extends Controller {
     
     public function index() {
 
-        $data = Docencia::all();
-        return view('docencia.index', compact('data'));
+        $professor = Professor::all();
+        $disciplinas = Disciplina::all();
+        return view('docencia.create', compact((['professor','disciplinas'])));
     }
 
     public function create() {
 
-        /*$data = "";
-        $docencia = [];
-        $docencia = explode("-", $data);
+        //$docencia = [];
+        //$docencia = explode("-", $valor);
 
-        echo $professor_id = $docencia[0];
-        //echo $disciplina_id = $docencia[1];
-        
-*/
         $professor = Professor::all();
         $disciplinas = Disciplina::all();
         return view('docencia.create', compact((['professor','disciplinas'])));
+
+        //echo $docencia[0];
+        ///echo $docencia[1];
+        
+        
     }
 
     public function store(Request $request) {
