@@ -10,28 +10,30 @@ use Illuminate\Http\Request;
 class DocenciaController extends Controller {
     
     public function index() {
-
+        $docencia = Docencia::all();
         $professor = Professor::all();
         $disciplinas = Disciplina::all();
-        return view('docencia.create', compact((['professor','disciplinas'])));
+        return view('docencia.create', compact((['professor','disciplinas','docencia'])));
     }
 
     public function create() {
-
-        //$docencia = [];
-        //$docencia = explode("-", $valor);
-
+        $docencia = Docencia::all();        
         $professor = Professor::all();
         $disciplinas = Disciplina::all();
-        return view('docencia.create', compact((['professor','disciplinas'])));
-
-        //echo $docencia[0];
-        ///echo $docencia[1];
-        
-        
+        return view('docencia.create', compact((['professor','disciplinas','docencia'])));
     }
 
     public function store(Request $request) {
+
+        $docencia = Docencia::all();
+        $professor = Professor::all();
+        $disciplinas = Disciplina::all();
+        $docenciav = [];
+
+        $docenciav = explode("_", $docencia);
+
+        $professor = $docenciav[0];
+        $disciplinas = $docenciav[1];
         
         Docencia::create([
             'professor_id' => $request->professor,

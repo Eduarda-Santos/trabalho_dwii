@@ -17,27 +17,28 @@
             <tbody>
                 <tr>
                     <div>
-                        <table class="table table-striped">
-                            <td class="d-none d-md-table-cell"></td>
+                        <table class="table table-striped" value="$item {disciplinas}'-'{professor}">
                             <div class="row">
                                 <div class="col">
                                     <div style="display:inline;">
-                                        <div class="input-group mb-3">
-                                            <select name="disciplinas" class="form-select" >
-                                                @foreach($disciplinas as $item)
-                                                    <option value="{{  $item->id  }}">
+                                        @foreach($disciplinas as $item)
+                                            <tr>
+                                                <td name="disciplinas" class="d-none d-md-table-cell" >
+                                                    <option value="{{  $item->disciplinas  }}">
                                                         {{ $item->nome  }}
                                                     </option>
-                                                @endforeach
-                                            </select>
-                                            <select name="professor" class="form-select">
-                                                @foreach($professor as $item)
-                                                <option value="{{  $item->id  }}">
-                                                    {{ $item->nome  }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                                </td>
+                                                <td>
+                                                    <select name="professor" class="form-select">
+                                                        @foreach($professor as $item)
+                                                        <option value="{{  $item->professor  }}">
+                                                            {{ $item->nome  }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </div>
                                 </div>
                         </table>
