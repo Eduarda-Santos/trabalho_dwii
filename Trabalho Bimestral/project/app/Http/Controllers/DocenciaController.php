@@ -30,7 +30,7 @@ class DocenciaController extends Controller {
         $disciplinas = Disciplina::all();
         $docenciav = [];
 
-        $docenciav = explode("_", $docencia);
+        $docenciav = explode("-", $docencia);
 
         $professor = $docenciav[0];
         $disciplinas = $docenciav[1];

@@ -19,7 +19,6 @@
                 <tr>
                     <div>
                         <table class="table table-striped">
-                            <td class="d-none d-md-table-cell"></td>
                             <div class="row">
                                 <div class="col">
                                     <div style="display:inline;">
